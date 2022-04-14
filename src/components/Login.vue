@@ -21,7 +21,7 @@ export default {
     methods:{
         login(){
                 axios
-                .get('http://localhost:8080/login/getVerificationCode')
+                .get('/login/getVerificationCode')
                 .then(response => (console.log(response.data)))
         }
     }
