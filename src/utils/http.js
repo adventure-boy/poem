@@ -1,8 +1,8 @@
 import axios from '@/utils/request';
 
-export function getNavMenu(){
+export function getComponents(){
     return axios({
         method:'get',
-        url:'/login/getMenu'
+        url:'/system/getComponents'
     })
 }
