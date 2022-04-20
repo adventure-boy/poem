@@ -6,3 +6,6 @@ export function getComponents(){
         url:'/system/getComponents'
     })
 }
+
+const getHttp = ()=>{
+}
