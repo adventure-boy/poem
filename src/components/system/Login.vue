@@ -76,9 +76,13 @@ export default {
             password:this.password,
             verificationCode:this.verificationCode,
           }).then(response=>{
+<<<<<<< HEAD
             if(response.data.code === 200){
               this.$router.replace("/home")
             }
+=======
+            console.log(response.data)
+>>>>>>> 665806f750b8e5fcb0f36983ee3fad54311509ff
           })
         }
     },
