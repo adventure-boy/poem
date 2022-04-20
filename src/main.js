@@ -6,11 +6,17 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import axios from 'axios'
 import store from '@/store/index'
+import {getHttp,postHttp,deleteHttp,putHttp} from '@/utils/http'
 
-Vue.prototype.$element = ElementUI 
+
 
 Vue.config.productionTip = false
 Vue.prototype.$axios = axios 
+Vue.prototype.getHttp= getHttp
+Vue.prototype.postHttp= postHttp
+Vue.prototype.deleteHttp= deleteHttp
+Vue.prototype.putHttp= putHttp
+
 Vue.use(VueRouter)
 Vue.use(ElementUI)
 

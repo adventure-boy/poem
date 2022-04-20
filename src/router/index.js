@@ -18,8 +18,18 @@ const router = new VueRouter({
 
 //路由拦截
 router.beforeEach((to, from, next) => {
-    addRouter()
-    next()
+    //如果去登录页,放行
+    if(to.path == '/'){
+        next();
+    }else{
+        //window对象有user信息
+        if(!window.sessionStorage.getItem('user')){
+            //初始化路由
+            addRouter();
+            next();
+        }
+    }
+    
 })
 
 function addRouter() {

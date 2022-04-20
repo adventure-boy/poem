@@ -10,7 +10,7 @@ import Login from './components/system/Login.vue'
 export default {
   name: 'App',
   components: {
-    Login
+
   }
 }
 </script>

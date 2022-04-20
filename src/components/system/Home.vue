@@ -1,5 +1,4 @@
 <template>
-<h1>h3</h1>
   <el-container style="height: 100%; border: 1px solid #eee">
     <el-aside width="220px" style="background-color: rgb(238, 241, 246)">
       <el-menu :default-openeds="[]">
@@ -32,7 +31,9 @@
         <span>王小虎</span>
       </el-header>
 
-      <el-main> </el-main>
+      <el-main> 
+        <router-view/>
+      </el-main>
     </el-container>
   </el-container>
 </template>
