@@ -53,18 +53,11 @@ export default {
         this.code = response.data.data;
       });
     },
-    login() {
-      this.postHttp("/login", this.user).then((response) => {
-        if (response.data.code === 200) {
-          this.$router.replace("home");
-        }
-      });
-    },
   },
   mounted() {
     this.getVerificationCode();
-  },
-};
+  }
+}
 </script>
 
 <style>
