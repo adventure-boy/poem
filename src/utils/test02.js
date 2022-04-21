@@ -94,5 +94,4 @@ let allRoutes = [
     return fmRoutes;
 }
 
-let r = formatRoutes(allRoutes)
-console.log(r);
+letformatRoutes(allRoutes)

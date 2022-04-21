@@ -53,18 +53,32 @@ export default {
         this.code = response.data.data;
       });
     },
-    login() {
-      this.postHttp("/login", this.user).then((response) => {
-        if (response.data.code === 200) {
-          this.$router.replace("home");
-        }
+
+    methods:{
+        getVerificationCode(){
+                axios
+                .get('/system/getVerificationCode')
+                .then(response => (
+                  console.log(response.data.data),
+                  this.code = response.data.data))
+        },
+        login(){
+          axios.post('/login',{
+            username:this.username,
+            password:this.password,
+            verificationCode:this.verificationCode,
+          }).then(response=>{
+
+            if(response.data.code === 200){
+              this.$router.replace("/home")
+            }
       });
     },
   },
   mounted() {
     this.getVerificationCode();
   },
-};
+},
 </script>
 
 <style>
