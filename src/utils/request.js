@@ -1,6 +1,6 @@
 import axios from 'axios';
 import Element from 'element-ui';
-
+axios.defaults.baseURL="http://localhost:8080/"
 
 
 
@@ -22,8 +22,6 @@ axios.interceptors.request.use((config)=>{
 
 axios.interceptors.response.use((response)=>{
     return response
-    // }
-
 })
 
 export default axios

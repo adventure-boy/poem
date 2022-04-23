@@ -1,31 +1,11 @@
 let allRoutes = [
     {
         "id": null,
-        "permissionId": "ffcc69a9-adc6-452c-8a77-9c7ed05b3d19",
-        "parentId": null,
-        "name": "首页",
-        "path": "/home",
-        "component": "/system/Home",
-        "componentName": null,
-        "children": []
-    },
-    {
-        "id": null,
-        "permissionId": "b6bd6dc6-3181-4ea4-bddc-7fa2a0c2750e",
-        "parentId": null,
-        "name": "消息中心",
-        "path": null,
-        "component": null,
-        "componentName": null,
-        "children": []
-    },
-    {
-        "id": null,
         "permissionId": "9f7cb32e-ddad-4ca8-8332-1638831e6be6",
         "parentId": null,
         "name": "系统管理",
-        "path": null,
-        "component": null,
+        "path": "/system",
+        "component": "",
         "componentName": null,
         "children": [
             {
@@ -49,6 +29,16 @@ let allRoutes = [
                 "children": null
             }
         ]
+    },
+    {
+        "id": null,
+        "permissionId": "b6bd6dc6-3181-4ea4-bddc-7fa2a0c2750e",
+        "parentId": null,
+        "name": "消息中心",
+        "path": "/message",
+        "component": null,
+        "componentName": null,
+        "children": []
     }
 ]
 
@@ -57,13 +47,9 @@ let allRoutes = [
     let fmRoutes = [];
     routes.forEach(router => {
         let {
-            id,
-            permissionId,
-            parentId,
             name,
             path,
             component,
-            componentName,
             children
         } = router;
         if (children && children instanceof Array) {
@@ -73,25 +59,33 @@ let allRoutes = [
             path: path,
             name: name,
             children: children,
-            component(resolve) {
-                if (component.startsWith("Home")) {
-                    require(['../views/' + component + '.vue'], resolve);
-                } else if (component.startsWith("Emp")) {
-                    require(['../views/emp/' + component + '.vue'], resolve);
-                } else if (component.startsWith("Per")) {
-                    require(['../views/per/' + component + '.vue'], resolve);
-                } else if (component.startsWith("Sal")) {
-                    require(['../views/sal/' + component + '.vue'], resolve);
-                } else if (component.startsWith("Sta")) {
-                    require(['../views/sta/' + component + '.vue'], resolve);
-                } else if (component.startsWith("Sys")) {
-                    require(['../views/sys/' + component + '.vue'], resolve);
-                }
-            }
+            component:()=>import('@/components'+ component+'.vue')
         }
         fmRoutes.push(fmRouter);
     })
     return fmRoutes;
 }
 
-letformatRoutes(allRoutes)
+
+const getRoutes = (routers)=>{
+    let routes = []
+    routers.forEach(router=>{
+         let {name,component,path,children} = router
+         if(children && children instanceof Array ){
+            children = getRoutes(children)
+         }
+         let r = {
+            name:name,
+            path:path,
+            children:children,
+            component:()=>import('@/components'+ component+'.vue')
+         }
+         console.log(r);
+         routes.push(r)
+    })
+    
+    return routes
+}
+let data = getRoutes(allRoutes)
+console.log(data);
+

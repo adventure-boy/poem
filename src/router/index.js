@@ -34,6 +34,7 @@ router.beforeEach((to, from, next) => {
 
 function addRouter() {
     getComponents().then(res => {
+        console.log(res.data.data);
         var data = getRoutes(res.data.data)
         console.log('-------')
         console.log(data)
@@ -41,30 +42,22 @@ function addRouter() {
     })
 }
 //拼接数据
-// function routesData(result){
-
-//     result.forEach(item =>{
-//             routes.push({
-//                 path: item.path, 
-//                 component:()=>import('@/components'+item.component)
-//             })
-//     })
-//     return routes
-// }
-
 const getRoutes = (routers)=>{
     let routes = []
-    routers.forEach((router)=>{
+    routers.forEach(router=>{
          let {name,component,path,children} = router
-         if(children && children instanceof Array){
-            getRoutes(children)
+         if(children && children instanceof Array ){
+             //别忘记替换children，否则路由报错。可通过debug
+            children = getRoutes(children)
          }
-         routes.push({
-             name:name,
-             path:path,
-             children:children,
-             component:()=>import('@/components'+component)
-         })
+         let r = {
+            name:name,
+            path:path,
+            children:children,
+            component:()=>import('@/components'+ component+'.vue')
+         }
+         console.log(r);
+         routes.push(r)
     })
     return routes
 }
