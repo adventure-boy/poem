@@ -1,40 +1,43 @@
 import axios from '@/utils/request';
 
-export function getComponents() {
+export function getComponents(url,userId) {
     return axios({
         method: 'get',
-        url: '/system/getMenu'
+        url: url,
+        params:{
+            userId:userId
+        }
     })
 }
 
-export const postHttp = (url, parms) => {
+export const postHttp = (url, params) => {
     return axios({
         method: 'post',
         url: url,
-        data: parms
+        data: params
     })
 }
 
-export const deleteHttp = (url, parms) => {
+export const deleteHttp = (url, params) => {
     return axios({
         method: 'delete',
         url: url,
-        data: parms
+        data: params
     })
 }
 
-export const putHttp = (url, parms) => {
+export const putHttp = (url, params) => {
     return axios({
         method: 'put',
         url: url,
-        data: parms
+        data: params
     })
 }
 
-export const getHttp = (url, parms) => {
+export const getHttp = (url, params) => {
     return axios({
         method: 'get',
         url: url,
-        data: parms
+        params: params
     })
 }

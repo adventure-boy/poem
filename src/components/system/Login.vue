@@ -53,6 +53,18 @@ export default {
         this.code = response.data.data;
       });
     },
+    login(){
+      this.postHttp("/login",this.user).then((response)=>{
+        console.log(response.data);
+        if(response.data.code === 200){
+          //将用户信息存入vuex
+          this.$store.dispatch("saveUserInfo",response.data.data)
+          // 将用户信息存入Windows
+          window.sessionStorage.setItem("user",JSON.stringify(response.data.data))
+          this.$router.replace("/home")
+        }
+      })
+    }
   },
   mounted() {
     this.getVerificationCode();

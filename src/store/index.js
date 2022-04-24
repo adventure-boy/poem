@@ -5,18 +5,22 @@ Vue.use(Vuex)
 
 const actions = {
     saveUserInfo(context,data){
-        context.commit(USER_INFO,data)
+        context.commit("USER_INFO",data)
     }
 }
 
 const mutations = {
     USER_INFO(state,data){
         state.user = data
+    },
+    initRoutes(state,parms){
+        state.routes=parms
     }
 }
 
 const state = {
-    user:""
+    user:"",
+    routes:[]
 }
 
 const store = new Vuex.Store({

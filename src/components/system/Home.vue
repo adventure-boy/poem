@@ -20,15 +20,6 @@
 
     <el-container>
       <el-header style="text-align: right; font-size: 12px">
-        <el-dropdown>
-          <i class="el-icon-setting" style="margin-right: 15px"></i>
-          <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item>查看</el-dropdown-item>
-            <el-dropdown-item>新增</el-dropdown-item>
-            <el-dropdown-item>删除</el-dropdown-item>
-          </el-dropdown-menu>
-        </el-dropdown>
-        <span>王小虎</span>
       </el-header>
 
       <el-main> 
@@ -48,11 +39,7 @@ export default {
   },
   methods: {
     getNavMenu() {
-      this.$axios.get("/system/getMenu").then((response) => {
-        this.nav = response.data.data;
-        console.log(response.data.data);
-      });
-      console.log("hello")
+      this.nav = this.$store.state.routes
     },
   },
   mounted() {
@@ -63,7 +50,7 @@ export default {
 
 <style>
 .el-header {
-  background-color: #8ad25a;
+  background-color: #dbe3d6;
   color: #333;
   line-height: 60px;
 }
@@ -71,6 +58,6 @@ export default {
 .el-aside {
   color: rgb(130, 67, 67);
   background-color: #c3d1b9;
-  height: 500px;
+  height: 700px;
 }
 </style>
